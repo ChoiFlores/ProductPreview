@@ -1,0 +1,155 @@
+:root{
+    --button-color: hsl(158,36%,37%);
+    --cream-background: hsl(30,38%,92%);
+
+    --fw-regular: 500; /*fw = FontWeight*/
+    --fw-bold: 700;
+}
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+  body {
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    5. Improve media defaults
+  */
+  img, picture, video, canvas, svg { /*IMPORTANTE para el responsive, de esta forma abarca todo el ancho cuando se llega a su tamaño maximo para que no este cortada la imagen*/
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    6. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    7. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+
+  h1,h2,h3{
+    line-height: 1.1; /* IMPORTANTEReducir el espaciado de lo alto entre los H Element*/
+  }
+
+
+  /*General Styling*/
+  body{
+    font-family: 'sans-Serif', Helvetica;
+    font-weight: var(--fw-regular);
+    font-size: 0.875rem;
+    display: grid;
+    min-height: 100vh; /* IMPORTANTE De esta forma abarca todo el alto y asi se posciona en el centro los elementos*/
+    place-content: center;
+    margin: 1rem;
+    background-color: var(--cream-background);
+
+  }
+
+  /*Utilities*/
+  .flex-group{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .visually-hidden:not(:Focus):not(:active){ /*Screen reader para mostrar elelmetos solo cuando es screenrreader*/
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+    /* button*/
+
+    .button[data-icon="shopping-cart"]::before{ /*Como es un flex item aparecera y no se ocupa declarar*/
+        content: ""; /*En blanco para que renderice*/
+        width: 15px;
+        height: 16px; /*Matching el width y height del icono SVG que se usara*/
+        background-image: url(img/icon-cart.svg);
+        font-size: 0.925rem; /*Solo aplica para elementos SVG*/
+    }
+    .button{
+        cursor: pointer;
+        padding: 0.5em 1.5em;
+        border: 0;
+        text-decoration: none;
+        display: inline-flex; /*Para el icono dell carrito se mantenga en la misma linea que el texto pero que continue con las propiedades del Flex*/
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem; /*Gap entre icono y texto*/
+        border: 0;
+        background-color: rgb(30, 133, 30);
+        color: white;
+        font-weight: var(--fw-bold);
+        border-radius: 0.5rem;
+    }
+    
+    .button:is(:hover,:focus){
+        background-color: rgb(31, 116, 31);
+
+    }
+
+
+  /*Product styles*/ 
+  .product{ /*Contenedor Principal*/
+    --content-padding: 1.5rem;
+    --content-spacing: 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: grid;
+    max-width: 600px;
+  }
+
+  @media (min-width: 600px){
+    .product{
+        --content-padding: 2rem;
+        grid-template-columns: 1fr 1fr; /*En los estilos de .product se declaro el display grid para poder usar esta propiedad*/
+    }
+  }
+
+  .product__content{ /*Contenedor Derecho*/
+    padding: var(--content-padding);
+    display: grid; /*El boton add to cart se maximiza por todo el ancho*/
+    gap: var(--content-spacing); /*Con grid se puede usar gap para separar los elementos del contenedor derecho como un margin top se ttratara*/
+  }
+
+  .product__category{ /*Titulo Perfume*/
+    letter-spacing: 6px; /*Separado en cada letra*/
+    text-transform: uppercase;
+  }
+
+  .product__title{ /*Titulo del producto*/
+    font-size: 2rem;
+  }
+
+  .product__price{
+    font-size: 2rem;
+    font-weight: var(--fw-bold);
+    color: rgb(0, 167, 0);
+  }
+
